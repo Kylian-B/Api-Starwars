@@ -1,0 +1,1780 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Starwars - Api",
+    "description": "API of starwars'movies",
+    "contact": {
+      "email": "kylipaxx@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:7777"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Films",
+      "description": "Everything about starwars' Films"
+    },
+    {
+      "name": "People",
+      "description": "Everything about starwars' population"
+    },
+    {
+      "name": "Planets",
+      "description": "Everything about starwars' planets"
+    },
+    {
+      "name": "Species",
+      "description": "Everything about starwars' spicoes"
+    },
+    {
+      "name": "Starships",
+      "description": "Everything about starwars' starships"
+    },
+    {
+      "name": "Transports",
+      "description": "Everything about starwars' transports"
+    },
+    {
+      "name": "Vehicles",
+      "description": "Everything about starwars' vehicles"
+    }
+  ],
+  "paths": {
+    "/films": {
+      "get": {
+        "tags": [
+          "Films"
+        ],
+        "summary": "Find all films",
+        "description": "Returns all films",
+        "operationId": "getAllFilms",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Films"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Films not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Films"
+        ],
+        "summary": "Add a new film to the store",
+        "description": "Add a new film to the store",
+        "operationId": "addFilm",
+        "requestBody": {
+          "description": "Create a new film in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Films"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Films"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/films/{filmId}": {
+      "get": {
+        "tags": [
+          "Films"
+        ],
+        "summary": "Find film by ID",
+        "description": "Returns a single film",
+        "operationId": "getFilmById",
+        "parameters": [
+          {
+            "name": "filmId",
+            "in": "path",
+            "description": "ID of film to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Films"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Film not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Films"
+        ],
+        "summary": "Update an existing film",
+        "description": "Update an existing film by Id",
+        "operationId": "updateFilmById",
+        "parameters": [
+          {
+            "name": "filmId",
+            "in": "path",
+            "description": "ID of film to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent film in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Films"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Films"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Film not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Films"
+        ],
+        "summary": "Deletes a film",
+        "description": "delete a film",
+        "operationId": "deleteFilm",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filmId",
+            "in": "path",
+            "description": "Film id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid film value"
+          }
+        }
+      }
+    },
+    "/people": {
+      "get": {
+        "tags": [
+          "People"
+        ],
+        "summary": "Find all people",
+        "description": "Returns all people",
+        "operationId": "getAllPeople",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/People"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "People not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "People"
+        ],
+        "summary": "Add a new person to the store",
+        "description": "Add a new person to the store",
+        "operationId": "addPerson",
+        "requestBody": {
+          "description": "Create a new person in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/People"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/People"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/people/{personId}": {
+      "get": {
+        "tags": [
+          "People"
+        ],
+        "summary": "Find person by ID",
+        "description": "Returns a single person",
+        "operationId": "getPersonById",
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "ID of person to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/People"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Person not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "People"
+        ],
+        "summary": "Update an existing person",
+        "description": "Update an existing person by Id",
+        "operationId": "updatePersonById",
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "ID of person to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent person in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/People"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/People"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Person not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "People"
+        ],
+        "summary": "Deletes a person",
+        "description": "delete a person",
+        "operationId": "deletePerson",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "Person id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid person value"
+          }
+        }
+      }
+    },
+    "/planets": {
+      "get": {
+        "tags": [
+          "Planets"
+        ],
+        "summary": "Find all planets",
+        "description": "Returns all planets",
+        "operationId": "getAllPlanets",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Planets"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Planets not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Planets"
+        ],
+        "summary": "Add a new planet to the store",
+        "description": "Add a new planet to the store",
+        "operationId": "addPlanet",
+        "requestBody": {
+          "description": "Create a new planet in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Planets"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Planets"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/planets/{planetId}": {
+      "get": {
+        "tags": [
+          "Planets"
+        ],
+        "summary": "Find planet by ID",
+        "description": "Returns a single planet",
+        "operationId": "getPlanetById",
+        "parameters": [
+          {
+            "name": "planetId",
+            "in": "path",
+            "description": "ID of planet to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Planets"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Planet not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Planets"
+        ],
+        "summary": "Update an existing planet",
+        "description": "Update an existing planet by Id",
+        "operationId": "updatePlanetById",
+        "parameters": [
+          {
+            "name": "planetId",
+            "in": "path",
+            "description": "ID of planet to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent planet in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Planets"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Planets"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Planet not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Planets"
+        ],
+        "summary": "Deletes a planet",
+        "description": "delete a planet",
+        "operationId": "deletePlanet",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "planetId",
+            "in": "path",
+            "description": "Planet id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid planet value"
+          }
+        }
+      }
+    },
+    "/species": {
+      "get": {
+        "tags": [
+          "Species"
+        ],
+        "summary": "Find all species",
+        "description": "Returns all species",
+        "operationId": "getAllSpecies",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Species"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Species not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Species"
+        ],
+        "summary": "Add a new species to the store",
+        "description": "Add a new species to the store",
+        "operationId": "addSpecies",
+        "requestBody": {
+          "description": "Create a new species in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Species"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Species"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/species/{speciesId}": {
+      "get": {
+        "tags": [
+          "Species"
+        ],
+        "summary": "Find species by ID",
+        "description": "Returns a single species",
+        "operationId": "getSpeciesById",
+        "parameters": [
+          {
+            "name": "speciesId",
+            "in": "path",
+            "description": "ID of species to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Species"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Species not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Species"
+        ],
+        "summary": "Update an existing species",
+        "description": "Update an existing species by Id",
+        "operationId": "updateSpeciesById",
+        "parameters": [
+          {
+            "name": "speciesId",
+            "in": "path",
+            "description": "ID of species to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent species in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Species"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Species"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Species not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Species"
+        ],
+        "summary": "Deletes a species",
+        "description": "delete a species",
+        "operationId": "deleteSpecies",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "speciesId",
+            "in": "path",
+            "description": "Species id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid species value"
+          }
+        }
+      }
+    },
+    "/starships": {
+      "get": {
+        "tags": [
+          "Starships"
+        ],
+        "summary": "Find all starships",
+        "description": "Returns all starships",
+        "operationId": "getAllStarships",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Starships"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Starships not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Starships"
+        ],
+        "summary": "Add a new starship to the store",
+        "description": "Add a new starship to the store",
+        "operationId": "addStarship",
+        "requestBody": {
+          "description": "Create a new starship in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Starships"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Starships"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/starships/{starshipId}": {
+      "get": {
+        "tags": [
+          "Starships"
+        ],
+        "summary": "Find starship by ID",
+        "description": "Returns a single starship",
+        "operationId": "getStarshipById",
+        "parameters": [
+          {
+            "name": "starshipId",
+            "in": "path",
+            "description": "ID of starship to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Starships"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Starship not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Starships"
+        ],
+        "summary": "Update an existing starship",
+        "description": "Update an existing starship by Id",
+        "operationId": "updateStarshipById",
+        "parameters": [
+          {
+            "name": "starshipId",
+            "in": "path",
+            "description": "ID of starship to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent starship in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Starships"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Starships"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Starship not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Starships"
+        ],
+        "summary": "Deletes a starship",
+        "description": "delete a starship",
+        "operationId": "deleteStarship",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "starshipId",
+            "in": "path",
+            "description": "Starship id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid starship value"
+          }
+        }
+      }
+    },
+    "/transports": {
+      "get": {
+        "tags": [
+          "Transports"
+        ],
+        "summary": "Find all transports",
+        "description": "Returns all transports",
+        "operationId": "getAllTransports",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transports"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Transports not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Transports"
+        ],
+        "summary": "Add a new transport to the store",
+        "description": "Add a new transport to the store",
+        "operationId": "addTransport",
+        "requestBody": {
+          "description": "Create a new transport in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Transports"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transports"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/transports/{transportId}": {
+      "get": {
+        "tags": [
+          "Transports"
+        ],
+        "summary": "Find transport by ID",
+        "description": "Returns a single transport",
+        "operationId": "getTransportById",
+        "parameters": [
+          {
+            "name": "transportId",
+            "in": "path",
+            "description": "ID of transport to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transports"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Transport not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Transports"
+        ],
+        "summary": "Update an existing transport",
+        "description": "Update an existing transport by Id",
+        "operationId": "updateTransportById",
+        "parameters": [
+          {
+            "name": "transportId",
+            "in": "path",
+            "description": "ID of transport to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent transport in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Transports"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transports"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Transport not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Transports"
+        ],
+        "summary": "Deletes a transport",
+        "description": "delete a transport",
+        "operationId": "deleteTransport",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transportId",
+            "in": "path",
+            "description": "Transport id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid transport value"
+          }
+        }
+      }
+    },
+    "/vehicles": {
+      "get": {
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Find all vehicles",
+        "description": "Returns all vehicles",
+        "operationId": "getAllVehicle",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vehicles"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Vehicle not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Add a new vehicle to the store",
+        "description": "Add a new vehicle to the store",
+        "operationId": "addVehicle",
+        "requestBody": {
+          "description": "Create a new vehicle in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Vehicles"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vehicles"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/vehicles/{vehicleId}": {
+      "get": {
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Find vehicle by ID",
+        "description": "Returns a single vehicle",
+        "operationId": "getVehicleById",
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "description": "ID of vehicle to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vehicles"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Vehicle not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Update an existing vehicle",
+        "description": "Update an existing vehicle by Id",
+        "operationId": "updateVehicleById",
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "description": "ID of vehicle to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent vehicle in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Vehicles"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vehicles"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Vehicle not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Vehicles"
+        ],
+        "summary": "Deletes a vehicle",
+        "description": "delete a vehicle",
+        "operationId": "deleteVehicle",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "description": "Vehicle id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid vehicle value"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Films": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "6418755f1af16c097a5504a7"
+          },
+          "edited": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2014-12-20T09:48:37.462Z"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2014-12-20T09:48:37.462Z"
+          },
+          "model": {
+            "type": "string",
+            "example": "resources.film"
+          },
+          "pk": {
+            "type": "number",
+            "example": ""
+          },
+          "starships": {
+            "type": "array",
+            "xml": {
+              "name": "starships",
+              "wrapped": true
+            },
+            "items": {
+              "$ref": "#/components/schemas/Starships"
+            }
+          },
+          "vehicles": {
+            "type": "array",
+            "xml": {
+              "name": "vehicles",
+              "wrapped": true
+            },
+            "items": {
+              "$ref": "#/components/schemas/Vehicles"
+            }
+          },
+          "planets": {
+            "type": "array",
+            "xml": {
+              "name": "planets",
+              "wrapped": true
+            },
+            "items": {
+              "$ref": "#/components/schemas/Planets"
+            }
+          },
+          "species": {
+            "type": "array",
+            "xml": {
+              "name": "species",
+              "wrapped": true
+            },
+            "items": {
+              "$ref": "#/components/schemas/Species"
+            }
+          },
+          "characters": {
+            "type": "array",
+            "xml": {
+              "name": "characters",
+              "wrapped": true
+            },
+            "items": {
+              "$ref": "#/components/schemas/People"
+            }
+          },
+          "producer": {
+            "type": "string",
+            "example": "Howard G. Kazanjian, George Lucas, Rick McCallum"
+          },
+          "title": {
+            "type": "string",
+            "example": "\"Return of the Jedi"
+          },
+          "director": {
+            "type": "string",
+            "example": "Richard Marquand"
+          },
+          "release_date": {
+            "type": "string",
+            "example": "1983-05-25"
+          },
+          "opening_crawl": {
+            "type": "string",
+            "example": "Luke Skywalker has returned to\\r\\nhis home planet of Tatooine in\\r\\nan attempt to rescue his\\r\\nfriend Han Solo from the\\r\\nclutches of the vile gangster\\r\\nJabba the Hutt.\\r\\n\\r\\nLittle does Luke know that the\\r\\nGALACTIC EMPIRE has secretly\\r\\nbegun construction on a new\\r\\narmored space station even\\r\\nmore powerful than the first\\r\\ndreaded Death Star.\\r\\n\\r\\nWhen completed, this ultimate\\r\\nweapon will spell certain doom\\r\\nfor the small band of rebels\\r\\nstruggling to restore freedom\\r\\nto the galaxy..."
+          },
+          "episode_id": {
+            "type": "number",
+            "example": 6
+          }
+        }
+      },
+      "People": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "6418755f1af16c097a5504a7"
+          },
+          "edited": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2014-12-20T09:48:37.462Z"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2014-12-20T09:48:37.462Z"
+          },
+          "model": {
+            "type": "string",
+            "example": "resources.people"
+          },
+          "pk": {
+            "type": "number",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Padmé Amidala"
+          },
+          "gender": {
+            "type": "string",
+            "example": "female"
+          },
+          "skin_color": {
+            "type": "string",
+            "example": "light"
+          },
+          "hair_color": {
+            "type": "string",
+            "example": "borwn"
+          },
+          "height": {
+            "type": "string",
+            "example": "185"
+          },
+          "eye_color": {
+            "type": "string",
+            "example": "brow,"
+          },
+          "mass": {
+            "type": "string",
+            "example": "45"
+          },
+          "homeworld": {
+            "type": "number",
+            "example": 5
+          }
+        }
+      },
+      "Planets": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "6418755f1af16c097a5504a7"
+          },
+          "edited": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2014-12-20T09:48:37.462Z"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2014-12-20T09:48:37.462Z"
+          },
+          "model": {
+            "type": "string",
+            "example": "resources.planets"
+          },
+          "pk": {
+            "type": "number",
+            "example": 1
+          },
+          "climate": {
+            "type": "string",
+            "example": "temperate"
+          },
+          "surface_water": {
+            "type": "string",
+            "example": "0"
+          },
+          "name": {
+            "type": "string",
+            "example": "Bespin"
+          },
+          "diameter": {
+            "type": "string",
+            "example": "118000"
+          },
+          "rotation_period": {
+            "type": "string",
+            "example": "12"
+          },
+          "terrain": {
+            "type": "string",
+            "example": "gas giant"
+          },
+          "gravity": {
+            "type": "string",
+            "example": "1.5 (surface), 1 standard (Cloud City)"
+          },
+          "orbital_period": {
+            "type": "string",
+            "example": "5110"
+          },
+          "population": {
+            "type": "string",
+            "example": "6000000"
+          }
+        }
+      },
+      "Species": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "6418755f1af16c097a5504a7"
+          },
+          "edited": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2014-12-20T09:48:37.462Z"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2014-12-20T09:48:37.462Z"
+          },
+          "model": {
+            "type": "string",
+            "example": "resources.species"
+          },
+          "pk": {
+            "type": "number",
+            "example": 1
+          },
+          "classification": {
+            "type": "string",
+            "example": "mammal"
+          },
+          "name": {
+            "type": "string",
+            "example": "Toydarian"
+          },
+          "designation": {
+            "type": "string",
+            "example": "sentient"
+          },
+          "eye_colors": {
+            "type": "string",
+            "example": "yellow"
+          },
+          "skin_colors": {
+            "type": "string",
+            "example": "blue, green, grey"
+          },
+          "language": {
+            "type": "string",
+            "example": "Toydarian"
+          },
+          "hair_colors": {
+            "type": "string",
+            "example": "none"
+          },
+          "homeworld": {
+            "type": "number",
+            "example": 34
+          },
+          "average_lifespan": {
+            "type": "string",
+            "example": "91"
+          },
+          "average_height": {
+            "type": "string",
+            "example": "120"
+          },
+          "people": {
+            "type": "array",
+            "xml": {
+              "name": "people",
+              "wrapped": true
+            },
+            "items": {
+              "$ref": "#/components/schemas/People"
+            }
+          }
+        }
+      },
+      "Starships": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "6418755f1af16c097a5504a7"
+          },
+          "model": {
+            "type": "string",
+            "example": "resources.straships"
+          },
+          "pk": {
+            "type": "number",
+            "example": 1
+          },
+          "pilots": {
+            "type": "array",
+            "xml": {
+              "name": "pilots",
+              "wrapped": true
+            },
+            "items": {
+              "$ref": "#/components/schemas/People"
+            }
+          },
+          "MGLT": {
+            "type": "string",
+            "example": "105"
+          },
+          "starship_class": {
+            "type": "string",
+            "example": "Starfighter"
+          },
+          "hyperdrive_rating": {
+            "type": "string",
+            "example": "1.0"
+          }
+        }
+      },
+      "Transports": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "6418755f1af16c097a5504a7"
+          },
+          "edited": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2014-12-20T09:48:37.462Z"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2014-12-20T09:48:37.462Z"
+          },
+          "pk": {
+            "type": "number",
+            "example": 1
+          },
+          "consumables": {
+            "type": "string",
+            "example": "unknown"
+          },
+          "name": {
+            "type": "string",
+            "example": "LAAT/i"
+          },
+          "cargo_capacity": {
+            "type": "string",
+            "example": "170"
+          },
+          "passengers": {
+            "type": "string",
+            "example": "30"
+          },
+          "max_atmosphering_speed": {
+            "type": "string",
+            "example": "620"
+          },
+          "crew": {
+            "type": "string",
+            "example": "6"
+          },
+          "length": {
+            "type": "string",
+            "example": "17.4"
+          },
+          "model": {
+            "type": "string",
+            "example": "Low Altitude Assault Transport/infrantry"
+          },
+          "cost_in_credits": {
+            "type": "string",
+            "example": "unknown"
+          },
+          "manufacturer": {
+            "type": "string",
+            "example": "Rothana Heavy Engineering"
+          }
+        }
+      },
+      "Vehicles": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "6418755f1af16c097a5504a7"
+          },
+          "model": {
+            "type": "string",
+            "example": "resources.vehicles"
+          },
+          "pk": {
+            "type": "number",
+            "example": 1
+          },
+          "pilots": {
+            "type": "array",
+            "xml": {
+              "name": "pilots",
+              "wrapped": true
+            },
+            "items": {
+              "$ref": "#/components/schemas/People"
+            }
+          },
+          "vehicle_class": {
+            "type": "string",
+            "example": "sail barge"
+          }
+        }
+      }
+    }
+  }
+}
